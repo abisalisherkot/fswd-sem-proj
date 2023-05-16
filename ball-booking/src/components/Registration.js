@@ -37,7 +37,7 @@ export default function Registration() {
     <PageHeading/>
     <div className='container'>
     <div className='col-md-6'></div>
-    <div className=' col-md-6 ml-2px'></div>
+    <div className=' col-md-6 ml-2px'>
     <Form onSubmit={ handleSubmit }>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>

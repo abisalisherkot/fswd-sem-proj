@@ -1,0 +1,46 @@
+.navbar-custom{
+    background-color:rgba(0,0,125,255);
+}
+.navbar {
+    height: 50px; /* adjust as needed */
+    padding: 0.5rem 1rem; /* adjust as needed */
+    font-size: 1rem; 
+    border-bottom: 1px solid rgba(0,0,125,255);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  }
+.customtexts{
+
+    color:rgba(101,232,252,255);
+    font-size: xx-large;
+    font-weight: bold;
+}
+a.text{
+    color: white;
+    font-size: xx-large;
+    font-weight: bold;
+}
+.nav-link{
+    color: white !important;
+    margin-left: 20px !important;
+}
+.vertical-line {
+    border-left: 1px solid white;
+    height: 30px;
+    margin: 0 10px; /* adjust as needed */
+  }
+ul.customul{
+    display: flex ;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white ;
+}
+@media (max-width: 580px) {
+    .navbar {
+      height: 70px; /* adjust as needed */
+      padding: 0.5rem; /* adjust as needed */
+      font-size: 0.8rem; /* adjust as needed */
+    }
+    .vertical-line{
+        display: none;
+    }
+  }
