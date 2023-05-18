@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Styling/NewsSection.css'
+import '../styling/NewsSection.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 export default function Newssection() {

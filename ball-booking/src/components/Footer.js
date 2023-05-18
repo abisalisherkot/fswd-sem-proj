@@ -1,7 +1,7 @@
 import React from 'react'
 import Redbull from '../images/redbull.jpg'
 
-import '../Styling/Footer.css'
+import '../styling/Footer.css'
 export default function Footer() {
   return (
     <div>

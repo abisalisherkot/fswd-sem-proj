@@ -2,12 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import Banner from './components/Banner'
-import ControlledCarousel from './components/carousel'
-import Newssection from './components/Newssection';
+import ControlledCarousel from './components/Carousel'
+import Newssection from './components/NewsSection';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import Registration from './components/Registration';
-import Home from './Home';
+import Home from './pages/Home';
 function App() 
 {
   return (
