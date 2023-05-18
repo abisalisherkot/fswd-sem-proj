@@ -32,12 +32,13 @@ export default function Registration() {
   }
   
   return (
+
     <div>
     <NavBar />
     <PageHeading/>
     <div className='container'>
     <div className='col-md-6'></div>
-    <div className=' col-md-6 ml-2px'>
+    <div className=' col-md-6 ml-2px offset-md-3'>
     <Form onSubmit={ handleSubmit }>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>

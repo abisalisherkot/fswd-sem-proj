@@ -6,7 +6,7 @@ import {Routes, Route, useNavigate,Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUser,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Registration from './Registration';
-import Singup from './Singup';
+import Singup from './Login';
 export default function NavBar() {
   const navigate = useNavigate();
 
