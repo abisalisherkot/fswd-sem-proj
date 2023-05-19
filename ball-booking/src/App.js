@@ -5,6 +5,7 @@ import Banner from './components/Banner'
 import ControlledCarousel from './components/Carousel'
 import Newssection from './components/NewsSection';
 import Footer from './components/Footer';
+import Login from './components/Login'
 import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
 import Registration from './components/Registration';
 import Home from './pages/Home';
@@ -17,6 +18,7 @@ function App()
 
       <Route path="/" element={ <Home /> } />
       <Route path="/Registration" element={ <Registration /> } />
+      <Route path='/Signup' element={<Login />} />
 
     </Routes></>
    
