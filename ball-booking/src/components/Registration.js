@@ -8,23 +8,21 @@ import { useNavigate } from 'react-router';
 import { useState } from 'react';
 
 export default function Registration() {
+  const [email,setemail]=useState("");
+  const [passwords,setpassword]=useState("");
   const navigate=useNavigate();
    function navigatetoRegister()
   {
 navigate("/Signup")
   }
 
-  const user = {
-    name: 'john@example.com',
-   
-    password: 'password123'
-  };
+ 
   
  
   
   async function sendData() {
-    const name = 'John'; // Example variable
-    const password = '1234567';
+    const name = email; // Example variable
+    const password = passwords;
     const url=`https://localhost:7191/api/Values/${name},${password}`
     const response = await fetch(url, {
       method: 'GET',
@@ -35,7 +33,16 @@ navigate("/Signup")
     });
     if(response.ok){
       const data =await response.text();
-      console.log(data);
+      if(data==="ok")
+      {
+        navigate("/")
+        alert("Aunthenticated")
+      }
+     else{
+      alert("Please Register yourself first")
+     }
+    
+
     }
     else {
       console.error('Request failed with status:', response.status);}
@@ -59,7 +66,9 @@ navigate("/Signup")
     <Form onSubmit={ handleSubmit }>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control type="email" placeholder="Enter email" onChange={(e)=>{
+setemail(e.target.value)
+        }}/>
         <Form.Text className="text-muted">
           We'll never share your email with anyone.
         </Form.Text>
@@ -67,7 +76,9 @@ navigate("/Signup")
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" placeholder="Password" onChange={(e)=>{
+          setpassword(e.target.value)
+        }}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Remember me" />

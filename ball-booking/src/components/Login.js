@@ -20,8 +20,8 @@ export default function Login() {
     const user = {
         fname: fname,
         lname:lname,
-        email: 'john@example.com',
-        password: 'password123'
+        email: email,
+        password: password
       };
     async function  Registere(){
 const response=fetch('https://localhost:7191/api/Values',{
@@ -54,7 +54,7 @@ const response=fetch('https://localhost:7191/api/Values',{
 
     <Form.Group className="mb-3" controlId="formBasicPassword">
       <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password" />
+      <Form.Control type="password" placeholder="Password" onChange={(e)=>{setpassword(e.target.value)}} />
     </Form.Group>
     <Form.Group className="mb-3" controlId="formBasicCheckbox">
       <Form.Check type="checkbox" label="Remember me" />
