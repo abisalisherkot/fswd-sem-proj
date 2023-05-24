@@ -28,22 +28,13 @@ export default function NavBar() {
     <div className="collapse navbar-collapse customul" id="navbarSupportedContent">
       <ul className="navbar-nav ml-5  customul">
         <li className="nav-item active">
-          <a className="nav-link " href="#">Home </a>
+          <a className="nav-link " href="/" onClick={()=>{navigate("/")}}>Home </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link"  onClick={()=>{
-navigate("/bookground")
-
-          }}>ground</a>
-        </li>
-       
-        <li className="nav-item">
-          <a className="nav-link disabled" href="#">Disabled</a>
+          <a className="nav-link"  href="/grounds" onClick={()=>{navigate("/grounds")}}>Grounds</a>
         </li>
         <li className="nav-item">
-        <a className="nav-link disabled" href="#">Disabled</a>
-      </li> <li className="nav-item">
-          <a className="nav-link disabled" href="#">Disabled</a>
+          <a className="nav-link" href="/add" onClick={()=>{navigate("/add")}}>Add Ground</a>
         </li>
       </ul>
     
