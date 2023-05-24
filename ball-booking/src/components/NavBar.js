@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styling/NavBar.css'
+import '../styles/NavBar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Routes, Route, useNavigate,Link} from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styling/PageHeading.css'
+import '../styles/PageHeading.css'
 export default function PageHeading() {
   return (
     <div className='pageHeading col-md-12'>
