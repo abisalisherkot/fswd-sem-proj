@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from './NavBar'
 import ground from '../images/ground.jpg'
-import '../styling/Grounds.css'
+import '../styles/Grounds.css'
 import { Button } from 'bootstrap'
 export default function Ground() {
     const items = [1, 2, 3, 4, 5,6,7,8];
