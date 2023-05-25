@@ -17,12 +17,24 @@ export default function Login() {
   {
     navigate("/Registration")
   }
-   function navigatetologin()
+   function navigatetologin(id,name)
   {
-navigate("/")
+    const data={Role:'Player',
+    Id:id,
+    Name:name
   }
-  function navigatetoGrounds(){
-    navigate("/add-ground")
+navigate("/",{state:data})
+
+  }
+  function navigatetoGrounds(id,name){
+    const data={Role:'GroundOwner',
+    Id:id,
+    Name:name
+  }
+
+
+    
+    navigate("/",{state:data})
   }
 
  
@@ -32,7 +44,12 @@ navigate("/")
   async function sendData() {
     const name = email; // Example variable
     const password = passwords;
-    if(Role==='player'){
+    console.log(name);
+    console.log(password)
+ 
+    if(Role==='Player'){
+
+      console.log('insidepllayer')
     const url=`https://localhost:7191/api/Values/${name},${password}`
     const response = await fetch(url, {
       method: 'GET',
@@ -42,10 +59,13 @@ navigate("/")
      
     });
     if(response.ok){
-      const data =await response.text();
-      if(data==="ok")
+      console.log('hh')
+      const data = await response.json();
+      console.log(data);
+      if(data)
       {
-        navigate("/")
+
+        navigatetologin(data.id,data.name);
         alert("Aunthenticated")
       }
      else{
@@ -67,10 +87,12 @@ navigate("/")
      
     });
     if(response.ok){
-      const data =await response.text();
-      if(data==="ok")
+      const data = await response.json();
+      console.log(data);
+      if(data)
       {
-        navigatetoGrounds()
+      
+        navigatetoGrounds(data.id,data.name)
         alert("Aunthenticated")
       }
      else{

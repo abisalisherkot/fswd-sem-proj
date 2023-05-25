@@ -7,13 +7,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUser,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Registration from './Registration';
 import Singup from './Login';
-export default function NavBar() {
+export default function NavBar(props) {
   const navigate = useNavigate();
 
   const navigateToContacts = () => {
     // 👇️ navigate to /contacts
     navigate('/Signup');
   };
+  const data=props.data;
+  console.log(data);
+  //i write PersonName bcoz it depend on the login person it can be player or groundOwner 
+  if(data){ 
+  const personName=data.Name;
+  const personId=data.Id;
+  
+  }
+  const navigateToGrounds = () => {
+    // 👇️ navigate to /contacts
+console.log(data.Role)
+    if(data.Role==='GroundOwner'){
+      console.log('hhh');
+
+      navigate("/add-ground");
+    }else{
+      alert('Bhi ya tera kaam nae insan ban');
+    }
+   
+  };
+ 
   return (
     
     <>
@@ -34,7 +55,7 @@ export default function NavBar() {
           <a className="nav-link"  href="/grounds" onClick={()=>{navigate("/grounds")}}>Grounds</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/add-ground" onClick={()=>{navigate("/add-ground")}}>Add Ground</a>
+          <a className="nav-link"  onClick={navigateToGrounds}>Add Ground</a>
         </li>
       </ul>
     
