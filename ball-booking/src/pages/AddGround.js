@@ -5,7 +5,9 @@ import NavBar from '../components/NavBar'
 
 export default function AddGround() {
   const [name, setName] = useState("");
-  const [details, setDetails] = useState("");
+  const [location, setLocation] = useState('');
+  const [address, setAddress] = useState('');
+  const [price, setPrice] = useState('');
   const [image, setImage] = useState("");
 
   const submitForm = async () => {
@@ -13,7 +15,7 @@ export default function AddGround() {
       await axios.post('http://localhost:5000/add-ground', {name: name, details: details, img: image}).then((res) => {
       console.log('res', res);
       alert('Ground added successfully');
-      //history('/');
+      history('/grounds');
       });
     }catch(err){
       alert(`Error: ${err}`);
@@ -21,13 +23,6 @@ export default function AddGround() {
   }
 
  
-  const clearData = () => {
-    setName('');
-    setDetails('');
-    setImage('');
-   
-  }
-
   function convertToBase64(e) {
     console.log(e);
     var reader = new FileReader();
@@ -47,21 +42,81 @@ export default function AddGround() {
     <NavBar></NavBar>
     <div className='row container justify-content-center align-items-center my-4'>
       <Form className="col-md-8">
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Ground Name</Form.Label>
-          <Form.Control value={name} onChange={(e) => setName(e.target.value)} type="name" placeholder="sportX" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea2">
-          <Form.Label>Ground Details</Form.Label>
-          <Form.Control value={details} onChange={(e) => setDetails(e.target.value)} as="textarea" rows={3} />
-        </Form.Group>
-        <Form.Group controlId="imageUpload">
-          <Form.Label>Upload Image</Form.Label>
-          <Form.Control accept="image/*" type="file" onChange={convertToBase64} />
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Label>Ground Name:</Form.Label>
+      <Form.Control
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        type="text"
+        placeholder="sportX"
+        required
+      />
+      <Form.Control.Feedback type="invalid">
+        Please provide a ground name.
+      </Form.Control.Feedback>
+    </Form.Group>
 
-          {image==="" || image==null?"" :<Image src={image} alt="Image description" fluid className="my-4" />}
-          
-        </Form.Group>
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+      <Form.Label>Ground Location:</Form.Label>
+      <div>
+        <Form.Check
+          type="radio"
+          label="Islamabad"
+          name="location"
+          value="Islamabad"
+          checked={location === 'Islamabad'}
+          onChange={(e) => setLocation(e.target.value)}
+          required
+        />
+        <Form.Check
+          type="radio"
+          label="Rawalpindi"
+          name="location"
+          value="Rawalpindi"
+          checked={location === 'Rawalpindi'}
+          onChange={(e) => setLocation(e.target.value)}
+          required
+        />
+      </div>
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+      <Form.Label>Ground Address:</Form.Label>
+      <Form.Control
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        type="text"
+        required
+      />
+      <Form.Control.Feedback type="invalid">
+        Please provide a ground address.
+      </Form.Control.Feedback>
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+      <Form.Label>Booking Price:</Form.Label>
+      <Form.Control
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
+        type="number"
+        required
+      />
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid booking price.
+      </Form.Control.Feedback>
+    </Form.Group>
+
+    <Form.Group controlId="imageUpload">
+      <Form.Label>Upload Image</Form.Label>
+      <Form.Control accept="image/*" type="file" onChange={convertToBase64} required />
+      {image === '' ? (
+        <Form.Control.Feedback type="invalid">
+          Please upload an image.
+        </Form.Control.Feedback>
+      ) : (
+        <Image src={image} alt="Image description" fluid className="my-4" />
+      )}
+    </Form.Group>
         <Button variant="success" className="mx-4 my-4" onClick={submitForm}>Submit</Button>
       </Form>
     </div>

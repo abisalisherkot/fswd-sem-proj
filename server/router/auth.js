@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
     res.send('Hello from server auth.js of ball booking')
 })
 
-
 router.post('/add-ground', async (req, res) => {
     const {name, location, address, price, img} = req.body;
     try{
