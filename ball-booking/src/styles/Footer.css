@@ -1,6 +1,6 @@
 .footer-sponsors {
     background-color: rgba(30,30,30,.9);
-    color: #bbb;
+    color: white;
     padding: 54px 0 10px;
     border-top: 1px solid #1e1e1e;
     border-bottom: 1px solid #1e1e1e;
@@ -9,7 +9,6 @@
 .footer-sponsors__header {
     font-weight: 400;
     text-align: center;
-    margin-bottom: 40px;
 }
 
 .o-block--corset {
@@ -21,8 +20,7 @@
     display: block;
     padding-left: 25px;
     padding-right: 25px;
-    margin-left: auto;
-    margin-right: auto;
+    
 }
 
 .footer-nav__brand-logo{

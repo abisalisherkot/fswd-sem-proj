@@ -8,13 +8,10 @@ import Footer from '../components/Footer'
 export default function Home() {
   return (
     <>
-    {/* 
-    <NavBar/>
+      <NavBar/>
      <Banner/>
      <ControlledCarousel/>
      <NewsSection/>
-    */}
-     
      <Footer/>
     </>
   )
