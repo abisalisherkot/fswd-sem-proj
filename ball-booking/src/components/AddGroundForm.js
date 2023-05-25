@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const AddGroundForm = () => {
-const [name, setName] = useState("");
+  const [name, setName] = useState("");
   const [location, setLocation] = useState('');
   const [address, setAddress] = useState('');
   const [price, setPrice] = useState('');
