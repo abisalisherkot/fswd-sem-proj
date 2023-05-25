@@ -6,7 +6,7 @@ import { Button } from 'bootstrap';
 import axios from 'axios';
 export default function Ground() {
 
-  const [allGrounds, setAllGrounds] = useState("");
+  const [allGrounds, setAllGrounds] = useState([]);
 
   useEffect(() => {
     try{
@@ -48,7 +48,7 @@ export default function Ground() {
         </div>
       </div>
     ))}
-  </div>  
+  </div>    
     </div>
     
     </div>
