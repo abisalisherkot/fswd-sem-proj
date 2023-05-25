@@ -3,8 +3,8 @@ import '../styles/Banner.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUser,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import ControlledCarousel from './carousel';
-import Newssection from './Newssection';
+import ControlledCarousel from './Carousel';
+import Newssection from './NewsSection';
 import Footer from './Footer';
 import NavBar from './NavBar';
 export default function Banner() {
