@@ -6,12 +6,21 @@ const groundSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        details: {
+        location: {
             type: String,
-            require: true
+            required: true
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: String,
+            required: true
         },
         image: {
             type: String,
+            required: true
         }
     },
     {
