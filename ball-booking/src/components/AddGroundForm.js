@@ -15,20 +15,27 @@ const AddGroundForm = () => {
   const submitForm = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-
     if (form.checkValidity() === false) {
+      console.log('Inside if');
       e.stopPropagation();
     } else {
-      try{
-        await axios.post('http://localhost:5000/add-ground', 
-        {name: name, location: location, address: address, price: price, img: image}).then((res) => {
-        console.log('res', res);
-        alert('Ground added successfully');
-        history('/grounds');
-        });
-      }catch(err){
-        alert(`Error: ${err}`);
-      }
+      console.log('Inside else');
+      if(name === '' || location === '' || address === '' || price === '' || image === ''){
+        console.log('Form not filled');
+      }else{
+        console.log('Submit form');
+      
+        try{
+          await axios.post('http://localhost:5000/add-ground', 
+          {name: name, location: location, address: address, price: price, img: image}).then((res) => {
+          console.log('res', res);
+          alert('Ground added successfully');
+          history('/grounds');
+          });
+        }catch(err){
+          alert(`Error: ${err}`);
+        }
+    }
     }
     setValidated(true);
   }
