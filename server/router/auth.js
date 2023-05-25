@@ -23,6 +23,17 @@ router.post('/add-ground', async (req, res) => {
     }
 });
 
+router.get('/get-grounds', async (req, res) => {
+    const {name, details, img} = req.body;
+    try{
+        await Ground.find({}).then(data=>{
+            res.send({Status: "ok", data: data});
+        })
+    }catch(err){
+        res.send({Status: `Error: ${err}`});
+    }
+});
+
 //Add Ground Route
 //Using async await
 // router.post('/add', async (req, res) => {

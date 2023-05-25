@@ -14,7 +14,7 @@ function App()
       <Route path="/Registration" element={ <Registration /> } />
       <Route path='/Signup' element={<Login />} />
       <Route path='/grounds' element={<Grounds/>} />
-      <Route path='/add' element={<AddGround/>} />
+      <Route path='/add-ground' element={<AddGround/>} />
     </Routes>
     </> 
   );

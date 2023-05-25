@@ -34,7 +34,7 @@ export default function NavBar() {
           <a className="nav-link"  href="/grounds" onClick={()=>{navigate("/grounds")}}>Grounds</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/add" onClick={()=>{navigate("/add")}}>Add Ground</a>
+          <a className="nav-link" href="/add-ground" onClick={()=>{navigate("/add-ground")}}>Add Ground</a>
         </li>
       </ul>
     

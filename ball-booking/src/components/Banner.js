@@ -25,16 +25,11 @@ export default function Banner() {
               <div className='text'> <h6>Find a place to play</h6></div>
 
             </div>
-
-
-
-
           </div>
-
         </div>
-
         <hr></hr>
-
+ 
+        {/* 
         <div className='nav-bar container'>
           <div className='row'>
             <ul className="navbar-nav ml-5  customulsecondnav">
@@ -56,7 +51,7 @@ export default function Banner() {
             </ul>
           </div>
         </div>
-
+        */}
 
       </div>
     
