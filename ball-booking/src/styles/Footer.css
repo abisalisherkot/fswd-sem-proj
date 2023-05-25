@@ -5,15 +5,18 @@
     border-top: 1px solid #1e1e1e;
     border-bottom: 1px solid #1e1e1e;
 }
+
 .footer-sponsors__header {
     font-weight: 400;
     text-align: center;
     margin-bottom: 40px;
 }
+
 .o-block--corset {
     width: 100%;
     max-width: 1340px;
 }
+
 .o-block {
     display: block;
     padding-left: 25px;
@@ -21,10 +24,12 @@
     margin-left: auto;
     margin-right: auto;
 }
+
 .footer-nav__brand-logo{
     display: flex;
     justify-content: flex-start;
 }
+
 .footer-sponsors_wrapper {
    
     display: flex;
@@ -32,8 +37,9 @@
     justify-content: center;
 
     flex-wrap: wrap;
-    margin: 0 -3px;
+    margin: 0;
 }
+
 .footer-nav--network {
     padding-bottom: 0;
     background-color: #191919;

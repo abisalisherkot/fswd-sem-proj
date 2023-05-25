@@ -1,9 +1,10 @@
 body{
-    background-color: rgba(240,241,243,255);
+    background-color: rgba(240,241,243,255); /*grey color*/
 }
 
 .container-fluid{
-    background-color:rgba(0,0,125,255);
+    background-color: black;
+    /* background-color:rgba(0,0,125,255); */
 }
 .container-fluid h1 span{
     color:rgba(110,255,110,255);

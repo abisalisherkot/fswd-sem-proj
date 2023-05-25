@@ -7,19 +7,15 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   return (
-    <div>
-     <Footer/>
-     {/*  
-    
-     NavBar/>
+    <>
+    {/* 
+    <NavBar/>
      <Banner/>
      <ControlledCarousel/>
      <NewsSection/>
-    
-     
     */}
      
-
-    </div>
+     <Footer/>
+    </>
   )
 }

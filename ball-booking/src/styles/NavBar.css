@@ -1,5 +1,6 @@
 .navbar-custom{
-    background-color:rgba(0,0,125,255);
+    /*background-color:rgba(0,0,125,255);*/
+    background-color: black;
 }
 .navbar {
     height: 50px; /* adjust as needed */
@@ -9,7 +10,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
   }
 .customtexts{
-
     color:rgba(101,232,252,255);
     font-size: xx-large;
     font-weight: bold;
