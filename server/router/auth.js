@@ -11,11 +11,13 @@ router.get('/', (req, res) => {
 
 
 router.post('/add-ground', async (req, res) => {
-    const {name, details, img} = req.body;
+    const {name, location, address, price, img} = req.body;
     try{
         await Ground.create({
-            name, name,
-            details: details,
+            name: name,
+            location: location,
+            address: address,
+            price: price,
             image: img});
         res.send({Status: "ok"});
     }catch(err){
@@ -24,7 +26,6 @@ router.post('/add-ground', async (req, res) => {
 });
 
 router.get('/get-grounds', async (req, res) => {
-    const {name, details, img} = req.body;
     try{
         await Ground.find({}).then(data=>{
             res.send({Status: "ok", data: data});
