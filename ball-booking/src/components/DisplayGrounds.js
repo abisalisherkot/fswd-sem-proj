@@ -25,23 +25,23 @@ const DisplayGrounds = () => {
     {isLoading
         ? ( <div className="text-center"> <Spinner animation="border" variant="primary"/></div>) 
         : (
+        <div className="container">
         <div className="row">
         {allGrounds.map((ground) => (
           <div key={ground._id} className="col-md-4">
-            <div className="card mx-2 my-2">
-              <img src={ground.image} className="card-img-top" alt='Ground pic'/>
+            <div className="card mx-2 my-4">
+            <img src={ground.image} className="card-img-top img-fluid" alt='Ground pic'/>
               <div className="card-body">
-                <div className='row d-flex'>
                   <p className="card-text"><b>Ground: </b>{ground.name}</p>
                   <p className="card-text"><b>Address: </b>{ground.address}, {ground.location}</p>
                   <p className="card-text"><b>Price: </b>{ground.price}</p>
                   <div className='btn btn-primary'>Book Now</div>
                 </div>
-              </div>
             </div>
           </div>
         ))}
       </div> 
+      </div>
       )}   
     </>
   )
