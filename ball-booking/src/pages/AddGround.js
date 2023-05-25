@@ -20,21 +20,18 @@ export default function AddGround() {
     if (form.checkValidity() === false) {
       e.stopPropagation();
     } else {
-      // Perform form submission
-      // ...
+      try{
+        await axios.post('http://localhost:5000/add-ground', 
+        {name: name, location: location, address: address, price: price, img: image}).then((res) => {
+        console.log('res', res);
+        alert('Ground added successfully');
+        history('/grounds');
+        });
+      }catch(err){
+        alert(`Error: ${err}`);
+      }
     }
-
     setValidated(true);
-    // try{
-    //   await axios.post('http://localhost:5000/add-ground', 
-    //   {name: name, location: location, address: address, price: price, img: image}).then((res) => {
-    //   console.log('res', res);
-    //   alert('Ground added successfully');
-    //   history('/grounds');
-    //   });
-    // }catch(err){
-    //   alert(`Error: ${err}`);
-    // }
   }
 
  
@@ -56,7 +53,7 @@ export default function AddGround() {
     <>
     <NavBar></NavBar>
     <div className='row container justify-content-center align-items-center my-4'>
-      <Form noValidate validated={validated} className="col-md-8">
+      <Form noValidate validated={validated} className="col-md-6">
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Ground Name:</Form.Label>
           <Form.Control
@@ -134,7 +131,7 @@ export default function AddGround() {
         </Form.Group>
 
         <Button variant="success" className="mx-4 my-4" onClick={submitForm}>Submit</Button>
-        
+
       </Form>
     </div>
     </>
