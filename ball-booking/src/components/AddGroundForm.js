@@ -55,7 +55,9 @@ const AddGroundForm = () => {
 
   }
   return (
-    <div className='row container justify-content-center align-items-center my-4'>
+    <>
+    <div className="container">
+    <div className='row justify-content-center align-items-center my-4'>
       <Form noValidate validated={validated} className="col-md-6">
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Ground Name:</Form.Label>
@@ -137,6 +139,8 @@ const AddGroundForm = () => {
 
       </Form>
     </div>
+    </div>
+    </>
   )
 }
 

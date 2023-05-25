@@ -10,7 +10,9 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
   }
 .customtexts{
-    color:rgba(101,232,252,255);
+
+    color: #F7D060;
+    /* color:rgba(101,232,252,255); */
     font-size: xx-large;
     font-weight: bold;
 }
