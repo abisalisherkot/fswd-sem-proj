@@ -26,11 +26,14 @@ router.post('/add-ground', async (req, res) => {
 
 router.get('/get-grounds', async (req, res) => {
     try{
+        console.log('inside try of auth.js front-end');
         await Ground.find({}).then(data=>{
             res.send({Status: "ok", data: data});
         })
     }catch(err){
+        console.log(`inside catch of auth.js front-end: Error: ${err}`);
         res.send({Status: `Error: ${err}`});
+        
     }
 });
 
