@@ -8,6 +8,7 @@ export default function Registration() {
     const [lname,setlname]=useState("")
     const [email,setemail]=useState("")
     const [password,setpassword]=useState("")
+    const [Role,setRole]=useState("")
     function setFname(name){
       setFname(name)
     }
@@ -24,6 +25,9 @@ export default function Registration() {
         password: password
       };
     async function  Registere(){
+      console.log(Role);
+      console.log(password)
+      if(Role==='Player'){
 const response=fetch('https://localhost:7191/api/Values',{
     method:'POST',
     headers:{
@@ -32,6 +36,18 @@ const response=fetch('https://localhost:7191/api/Values',{
     body:JSON.stringify(user)
 
 })
+
+      }
+      else{
+        const response=fetch('https://localhost:7221/api/Values',{
+          method:'POST',
+          headers:{
+              'Content-type':'application/json'
+          },
+          body:JSON.stringify(user)
+      
+      })
+      }
     }
   return (
     <><NavBar/>
@@ -56,6 +72,28 @@ const response=fetch('https://localhost:7191/api/Values',{
       <Form.Label>Password</Form.Label>
       <Form.Control type="password" placeholder="Password" onChange={(e)=>{setpassword(e.target.value)}} />
     </Form.Group>
+    <Form.Group className="mb-3" controlId="formBasicRadio">
+    <Form.Label>Role</Form.Label>
+    <div>
+      <Form.Check
+        type="radio"
+        label="Player"
+        name="designation"
+        id="Player"
+        value="Player"
+        onChange={(e) => { setRole(e.target.value) }}
+      />
+      <Form.Check
+        type="radio"
+        label="GroundOwner"
+        name="designation"
+        id="GroundOwner"
+        value="GroundOwner"
+        onChange={(e) => { setRole(e.target.value) }}
+      />
+    </div>
+  </Form.Group>
+
     <Form.Group className="mb-3" controlId="formBasicCheckbox">
       <Form.Check type="checkbox" label="Remember me" />
     </Form.Group>

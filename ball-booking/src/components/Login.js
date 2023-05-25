@@ -10,10 +10,19 @@ import { useState } from 'react';
 export default function Login() {
   const [email,setemail]=useState("");
   const [passwords,setpassword]=useState("");
+  const [Role,setRole]=useState("")
   const navigate=useNavigate();
+  const groundOwnernavigation=useNavigate();
+  function navigatetoRegistration()
+  {
+    navigate("/Registration")
+  }
    function navigatetologin()
   {
-navigate("/Registration")
+navigate("/")
+  }
+  function navigatetoGrounds(){
+    navigate("/add-ground")
   }
 
  
@@ -23,6 +32,7 @@ navigate("/Registration")
   async function sendData() {
     const name = email; // Example variable
     const password = passwords;
+    if(Role==='player'){
     const url=`https://localhost:7191/api/Values/${name},${password}`
     const response = await fetch(url, {
       method: 'GET',
@@ -46,6 +56,32 @@ navigate("/Registration")
     }
     else {
       console.error('Request failed with status:', response.status);}
+    }
+    else{
+      const url=`https://localhost:7221/api/Values/${name},${password}`
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+     
+    });
+    if(response.ok){
+      const data =await response.text();
+      if(data==="ok")
+      {
+        navigatetoGrounds()
+        alert("Aunthenticated")
+      }
+     else{
+      alert("Please Register yourself first")
+     }
+    
+
+    }
+    else {
+      console.error('Request failed with status:', response.status);}
+    }
     
   }
   
@@ -83,12 +119,33 @@ setemail(e.target.value)
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Remember me" />
       </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicRadio">
+      <Form.Label>Role</Form.Label>
+      <div>
+        <Form.Check
+          type="radio"
+          label="Player"
+          name="designation"
+          id="Player"
+          value="Player"
+          onChange={(e) => { setRole(e.target.value) }}
+        />
+        <Form.Check
+          type="radio"
+          label="GroundOwner"
+          name="designation"
+          id="GroundOwner"
+          value="GroundOwner"
+          onChange={(e) => { setRole(e.target.value) }}
+        />
+      </div>
+    </Form.Group>
       <Button variant="primary" type="submit" onClick={ sendData } style={{width:"34pc"}}>
         Signin
       </Button>
       <div className='text-center'>
       <p>Not a member ?
-      <a href='#!' onClick={navigatetologin}>Register</a>
+      <a href='#!' onClick={navigatetoRegistration}>Register</a>
       </p>
       
       </div>

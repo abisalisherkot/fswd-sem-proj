@@ -12,7 +12,7 @@ export default function NavBar() {
 
   const navigateToContacts = () => {
     // 👇️ navigate to /contacts
-    navigate('/Login');
+    navigate('/Signup');
   };
   return (
     
