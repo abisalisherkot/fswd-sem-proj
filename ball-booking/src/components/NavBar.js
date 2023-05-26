@@ -40,6 +40,22 @@ console.log(data.Role)
     navigate('/Signup')
   }
   };
+  function bookground()
+  {
+    if(data){ 
+      const player={
+        Role:'Player',
+    Id:data.Id,
+    Name:data.Name
+    
+  }
+      console.log(data)
+    navigate("/grounds",{state:player})
+    }
+    else{
+      alert('Login first');
+    }
+  }
  
   return (
     
@@ -58,7 +74,7 @@ console.log(data.Role)
           <a className="nav-link " href="/" onClick={()=>{navigate("/")}}>Home </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link"  href="/grounds" onClick={()=>{navigate("/grounds")}}>Grounds</a>
+          <a className="nav-link"  href="/grounds" onClick={bookground}>Grounds</a>
         </li>
         <li className="nav-item">
           <a className="nav-link"  onClick={navigateToGrounds}>Add Ground</a>
