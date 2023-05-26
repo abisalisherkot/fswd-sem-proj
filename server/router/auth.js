@@ -3,6 +3,7 @@ const router = express.Router();
 
 require('../db/conn');
 const Ground = require('../model/groundSchema');
+const Booking = require('../model/bookingSchema');
 
 //Default page when localhost is loaded
 router.get('/', (req, res) => {
@@ -19,6 +20,27 @@ router.post('/add-ground', async (req, res) => {
             price: price,
             image: img});
         res.send({Status: "ok"});
+    }catch(err){
+        res.send({Status: `Error: ${err}`});
+    }
+});
+
+router.post('/add-booking', async (req, res) => {
+    const {personID, personName, bookingDate, bookingTime, 
+        bookingPrice, groundName, groundLocation, groundAddress, groundImage} = req.body;
+    
+    if(!personID || !personName || !bookingDate  || !bookingTime
+        || !bookingPrice || !groundName || !groundLocation || !groundAddress || !groundImage){
+        return res.status(422).json({error: 'Please fill all fields!'});
+    }
+    try{
+        //console.log(personID, personName, bookingDate, bookingTime, 
+           // bookingPrice, groundName, groundLocation, groundAddress, groundImage);
+        await Booking.create({
+            personID, personName, bookingDate, bookingTime, 
+        bookingPrice, groundName, groundLocation, groundAddress, groundImage
+            });
+        res.send({Status: "Ok, added in DB"});
     }catch(err){
         res.send({Status: `Error: ${err}`});
     }
