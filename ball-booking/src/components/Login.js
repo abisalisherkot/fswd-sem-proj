@@ -23,6 +23,7 @@ export default function Login() {
     Id:id,
     Name:name
   }
+  localStorage.setItem('userData', JSON.stringify(data));
 navigate("/",{state:data})
 
   }
