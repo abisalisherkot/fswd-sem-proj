@@ -8,10 +8,19 @@ const UpcomingBookings = () => {
 
   const [allBookings, setAllBooking] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
+  const storedData = localStorage.getItem('userData');
+  const data = storedData ? JSON.parse(storedData) : null;
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data]);
+
  
   useEffect(() => {
     try{
-      const personID = '1';
+      const personID = data.Id;
         // console.log('Inside try of Ground.js front-end');
         axios.get(`http://localhost:5000/get-bookings/${personID}`).then((res) => {
         console.log('Upcoming bookings retrieved from db successfully using API');

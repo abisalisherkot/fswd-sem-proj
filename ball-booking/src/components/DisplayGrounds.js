@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 const DisplayGrounds = () => {
 
-  // const location = useLocation();
-  // const data = location.state;
-  // console.log(data);
+  const location = useLocation();
+  const data = location.state;
+  console.log(data);
  
   const [allGrounds, setAllGrounds] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
@@ -41,16 +41,16 @@ const DisplayGrounds = () => {
       }else{
       //   console.log(`Date: ${selectedDate}, Time: ${selectedTime}`)
       //   console.log(typeof(selectedDate), typeof(selectedTime));
-        // if(data){
-        //   const personId=data.Id;
-        //   const personName=data.Name;
-        //   console.log(personId)
-        //   console.log(personName)
-        // }
+        if(data){
+          const personId=data.Id;
+          const personName=data.Name;
+          console.log(personId)
+          console.log(personName)
+        }
    
         try{
           await axios.post('http://localhost:5000/add-booking', 
-          {personID: '1', personName: 'Abis', bookingDate: selectedDate, bookingTime: selectedTime, 
+          {personID: data.Id, personName: data.Name, bookingDate: selectedDate, bookingTime: selectedTime, 
             bookingPrice: selectedGround.price, groundName: selectedGround.name, 
             groundLocation: selectedGround.location, groundAddress: selectedGround.address, groundImage: selectedGround.image}).then((res) => {
           console.log('res', res);

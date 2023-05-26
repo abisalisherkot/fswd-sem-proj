@@ -15,9 +15,17 @@ console.log(data);
     <>
       <NavBar data={data}/>
      <Banner/>
-     <UpcomingBookings></UpcomingBookings>
+     
      <ControlledCarousel/>
-     <NewsSection/>
+     <div className='row'>
+     <div className='column'>
+       <UpcomingBookings></UpcomingBookings>
+     </div>
+     <div className='column'>
+       <NewsSection/>
+     </div>
+   </div>
+    
      <Footer/>
     </>
   )
