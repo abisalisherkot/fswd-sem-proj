@@ -5,6 +5,7 @@ import ControlledCarousel from '../components/Carousel'
 import NewsSection from '../components/NewsSection'
 import Footer from '../components/Footer'
 import { useLocation } from 'react-router-dom';
+import UpcomingBookings from '../components/UpcomingBookings'
 
 export default function Home() {
  const location = useLocation();
@@ -14,6 +15,7 @@ console.log(data);
     <>
       <NavBar data={data}/>
      <Banner/>
+     <UpcomingBookings></UpcomingBookings>
      <ControlledCarousel/>
      <NewsSection/>
      <Footer/>

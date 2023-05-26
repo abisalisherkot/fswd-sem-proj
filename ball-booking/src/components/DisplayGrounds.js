@@ -3,24 +3,28 @@ import { Spinner } from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 const DisplayGrounds = () => {
 
-  const location = useLocation();
- const data = location.state;
-console.log(data);
+  // const location = useLocation();
+  // const data = location.state;
+  // console.log(data);
  
   const [allGrounds, setAllGrounds] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
-  const [open, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
-
+  const [selectedGround, setSelectedGround] = useState(null);
+  const history = useNavigate();
 
   useEffect(() => {
     try{
-        console.log('Inside try of Ground.js front-end');
+        // console.log('Inside try of Ground.js front-end');
         axios.get('http://localhost:5000/get-grounds').then((res) => {
-        console.log('Res:', res.data);
+        console.log('Grounda retrieved from db successfully using API');
+        //console.log('Res:', res.data);
         setAllGrounds(res.data.data);
         setIsLoading(false); // Set loading state to false when data is received
         });
@@ -31,33 +35,33 @@ console.log(data);
     } 
   }, []);
 
-  const bookGround = async (e) => {
-     
-      console.log('Inside else');
+  const bookGround = async (selectedGround) => {
       if(selectedDate === '' || selectedTime === ''){
         console.log('Please select date time');
       }else{
-        console.log(`Date: ${selectedDate}, Time: ${selectedTime}`)
-        console.log(typeof(selectedDate), typeof(selectedTime));
-        if(data){
-          const personId=data.Id;
-          const personName=data.Name;
-          console.log(personId)
-          console.log(personName)
-        }
-   
-        // try{
-        //   await axios.post('http://localhost:5000/add-ground', 
-        //   {name: name, location: location, address: address, price: price, img: image}).then((res) => {
-        //   console.log('res', res);
-        //   alert('Ground added successfully');
-        //   history('/grounds');
-        //   });
-        // }catch(err){
-        //   alert(`Error: ${err}`);
+      //   console.log(`Date: ${selectedDate}, Time: ${selectedTime}`)
+      //   console.log(typeof(selectedDate), typeof(selectedTime));
+        // if(data){
+        //   const personId=data.Id;
+        //   const personName=data.Name;
+        //   console.log(personId)
+        //   console.log(personName)
         // }
+   
+        try{
+          await axios.post('http://localhost:5000/add-booking', 
+          {personID: '1', personName: 'Abis', bookingDate: selectedDate, bookingTime: selectedTime, 
+            bookingPrice: selectedGround.price, groundName: selectedGround.name, 
+            groundLocation: selectedGround.location, groundAddress: selectedGround.address, groundImage: selectedGround.image}).then((res) => {
+          console.log('res', res);
+          alert('Booking Confirmed!');
+          history('/');
+          });
+        }catch(err){
+          alert(`Error: ${err}`);
+        }
     }
-    //setOpen(false);
+    setOpen(false);
   }
 
   return (
@@ -76,8 +80,11 @@ console.log(data);
                   <p className="card-text"><b>Address: </b>{ground.address}, {ground.location}</p>
                   <p className="card-text"><b>Price: </b>{ground.price}</p>
                   <Button variant="primary" className="my-2" 
-                  onClick={() => setOpen(true)}>Book Now</Button>
-                  {open === true && (
+                  onClick={() => {
+                    setSelectedGround(ground);
+                    setOpen(true);
+                  }}>Book Now</Button>
+                  {isOpen === true && (
                     <span>
                       <div className="my-2">
                         <div className="my-2 mx-4">
@@ -112,7 +119,7 @@ console.log(data);
                       <Button
                         variant="success"
                         className="hover:shadow-form rounded-md bg-[#0E9F6E] py-2 px-6 text-center text-base font-semibold text-white outline-none"
-                        onClick={bookGround}>
+                        onClick={() => bookGround(selectedGround)}>
                         Submit
                       </Button>
                     </span>
