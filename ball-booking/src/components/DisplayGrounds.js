@@ -2,8 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { Spinner } from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
-
+import { useLocation } from 'react-router-dom';
 const DisplayGrounds = () => {
+
+  const location = useLocation();
+ const data = location.state;
+console.log(data);
+ 
   const [allGrounds, setAllGrounds] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [open, setOpen] = useState(false);
@@ -34,6 +39,13 @@ const DisplayGrounds = () => {
       }else{
         console.log(`Date: ${selectedDate}, Time: ${selectedTime}`)
         console.log(typeof(selectedDate), typeof(selectedTime));
+        if(data){
+          const personId=data.Id;
+          const personName=data.Name;
+          console.log(personId)
+          console.log(personName)
+        }
+   
         // try{
         //   await axios.post('http://localhost:5000/add-ground', 
         //   {name: name, location: location, address: address, price: price, img: image}).then((res) => {
