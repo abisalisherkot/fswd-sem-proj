@@ -3,12 +3,14 @@ const router = express.Router();
 
 require('../db/conn');
 const Ground = require('../model/groundSchema');
+const Booking = require('../model/bookingSchema');
 
 //Default page when localhost is loaded
 router.get('/', (req, res) => {
     res.send('Hello from server auth.js of ball booking')
 })
 
+//Api to add a ground
 router.post('/add-ground', async (req, res) => {
     const {name, location, address, price, img} = req.body;
     try{
@@ -24,14 +26,53 @@ router.post('/add-ground', async (req, res) => {
     }
 });
 
+//Api to add ground booking
+router.post('/add-booking', async (req, res) => {
+    const {personID, personName, bookingDate, bookingTime, 
+        bookingPrice, groundName, groundLocation, groundAddress, groundImage} = req.body;
+    
+    if(!personID || !personName || !bookingDate  || !bookingTime
+        || !bookingPrice || !groundName || !groundLocation || !groundAddress || !groundImage){
+        return res.status(422).json({error: 'Please fill all fields!'});
+    }
+    try{
+        //console.log(personID, personName, bookingDate, bookingTime, 
+           // bookingPrice, groundName, groundLocation, groundAddress, groundImage);
+        await Booking.create({
+            personID, personName, bookingDate, bookingTime, 
+        bookingPrice, groundName, groundLocation, groundAddress, groundImage
+            });
+        res.send({Status: "Ok, added in DB"});
+    }catch(err){
+        res.send({Status: `Error: ${err}`});
+    }
+});
+
+//Api to get all grounds
 router.get('/get-grounds', async (req, res) => {
     try{
-        console.log('inside try of auth.js front-end');
+        // console.log('inside try of auth.js front-end');
         await Ground.find({}).then(data=>{
             res.send({Status: "ok", data: data});
         })
     }catch(err){
-        console.log(`inside catch of auth.js front-end: Error: ${err}`);
+        // console.log(`inside catch of auth.js front-end: Error: ${err}`);
+        res.send({Status: `Error: ${err}`});
+        
+    }
+});
+
+//Api to bookings done by user
+router.get('/get-bookings/:personID', async (req, res) => {
+    try{
+        // console.log('inside try of auth.js front-end');
+        const personID = req.params.personID;
+        console.log(personID);
+        await Booking.find({ personID: personID}).then(data=>{
+        res.send({Status: "ok", data: data});
+        })
+    }catch(err){
+        // console.log(`inside catch of auth.js front-end: Error: ${err}`);
         res.send({Status: `Error: ${err}`});
         
     }
