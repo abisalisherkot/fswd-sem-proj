@@ -23,6 +23,7 @@ export default function NavBar(props) {
   
   }
   const navigateToGrounds = () => {
+    if(data){ 
     // 👇️ navigate to /contacts
 console.log(data.Role)
     if(data.Role==='GroundOwner'){
@@ -31,8 +32,13 @@ console.log(data.Role)
       navigate("/add-ground");
     }else{
       alert('Bhi ya tera kaam nae insan ban');
+    
     }
-   
+  }
+  else{
+    alert('abyyy pehly login kar')
+    navigate('/Signup')
+  }
   };
  
   return (
