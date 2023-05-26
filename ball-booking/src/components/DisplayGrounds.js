@@ -4,9 +4,12 @@ import {Button} from 'react-bootstrap';
 import axios from 'axios';
 
 const DisplayGrounds = () => {
-    const [allGrounds, setAllGrounds] = useState([]);
+  const [allGrounds, setAllGrounds] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [open, setOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
+
 
   useEffect(() => {
     try{
@@ -22,6 +25,29 @@ const DisplayGrounds = () => {
       setIsLoading(false); // Set loading state to false when data is received
     } 
   }, []);
+
+  const bookGround = async (e) => {
+     
+      console.log('Inside else');
+      if(selectedDate === '' || selectedTime === ''){
+        console.log('Please select date time');
+      }else{
+        console.log(`Date: ${selectedDate}, Time: ${selectedTime}`)
+        console.log(typeof(selectedDate), typeof(selectedTime));
+        // try{
+        //   await axios.post('http://localhost:5000/add-ground', 
+        //   {name: name, location: location, address: address, price: price, img: image}).then((res) => {
+        //   console.log('res', res);
+        //   alert('Ground added successfully');
+        //   history('/grounds');
+        //   });
+        // }catch(err){
+        //   alert(`Error: ${err}`);
+        // }
+    }
+    //setOpen(false);
+  }
+
   return (
     <>
     {isLoading
@@ -37,8 +63,8 @@ const DisplayGrounds = () => {
                   <p className="card-text"><b>Ground: </b>{ground.name}</p>
                   <p className="card-text"><b>Address: </b>{ground.address}, {ground.location}</p>
                   <p className="card-text"><b>Price: </b>{ground.price}</p>
-                  <Button variant="primary" className="mx-2 my-2" 
-                  onClick={() => setOpen(true)}>Submit</Button>
+                  <Button variant="primary" className="my-2" 
+                  onClick={() => setOpen(true)}>Book Now</Button>
                   {open === true && (
                     <span>
                       <div className="my-2">
@@ -51,6 +77,7 @@ const DisplayGrounds = () => {
                               type="date"
                               name="date"
                               id="date"
+                              onChange={(e) => setSelectedDate(e.target.value)}
                               className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                           </div>
@@ -64,6 +91,7 @@ const DisplayGrounds = () => {
                               type="time"
                               name="time"
                               id="time"
+                              onChange={(e) => setSelectedTime(e.target.value)}
                               className="w-full rounded-md border border-[#e0e0e0] bg-white py-2 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                             />
                           </div>
@@ -72,7 +100,7 @@ const DisplayGrounds = () => {
                       <Button
                         variant="success"
                         className="hover:shadow-form rounded-md bg-[#0E9F6E] py-2 px-6 text-center text-base font-semibold text-white outline-none"
-                        onClick={() => setOpen(false)}>
+                        onClick={bookGround}>
                         Submit
                       </Button>
                     </span>
