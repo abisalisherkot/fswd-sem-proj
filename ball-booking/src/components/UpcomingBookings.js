@@ -21,6 +21,7 @@ const UpcomingBookings = () => {
   useEffect(() => {
     try{
       const personID = data.Id;
+      console.log(personID)
         // console.log('Inside try of Ground.js front-end');
         axios.get(`http://localhost:5000/get-bookings/${personID}`).then((res) => {
         console.log('Upcoming bookings retrieved from db successfully using API');

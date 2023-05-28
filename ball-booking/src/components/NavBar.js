@@ -46,6 +46,7 @@ export default function NavBar(props) {
       navigate('/grounds', { state: player });
     } else {
       alert('Login first');
+      navigate('/signup')
     }
   }
 
@@ -77,7 +78,7 @@ export default function NavBar(props) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/grounds" onClick={bookground}>
+              <a className="nav-link" href="" onClick={bookground}>
                 Grounds
               </a>
             </li>
