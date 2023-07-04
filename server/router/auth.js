@@ -7,7 +7,7 @@ const Booking = require('../model/bookingSchema');
 
 //Default page when localhost is loaded
 router.get('/', (req, res) => {
-    res.send('Hello from server auth.js of ball booking')
+    res.send(' from server auth.js of ball booking')
 })
 
 //Api to add a ground
