@@ -4,16 +4,29 @@ import Banner from '../components/Banner'
 import ControlledCarousel from '../components/carousel'
 import NewsSection from '../components/Newssection'
 import Footer from '../components/Footer'
+import { useLocation } from 'react-router-dom';
+import UpcomingBookings from '../components/UpcomingBookings'
 
 export default function Home() {
+ const location = useLocation();
+ const data = location.state;
+console.log(data);
   return (
-    <div>
-     <NavBar/>
+    <>
+      <NavBar data={data}/>
      <Banner/>
+     
      <ControlledCarousel/>
-     <NewsSection/>
+     <div className='row'>
+     <div className='column'>
+       <UpcomingBookings></UpcomingBookings>
+     </div>
+     <div className='column'>
+       <NewsSection/>
+     </div>
+   </div>
+    
      <Footer/>
-
-    </div>
+    </>
   )
 }

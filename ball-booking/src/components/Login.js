@@ -10,19 +10,30 @@ import { useState } from 'react';
 export default function Login() {
   const [email,setemail]=useState("");
   const [passwords,setpassword]=useState("");
-  const [gender,setgender]=useState("")
   const navigate=useNavigate();
-  const groundOwnernavigation=useNavigate();
-  function navigatetoRegistration()
-  {
-    navigate("/Registration")
-  }
    function navigatetologin()
   {
-navigate("/")
+navigate("/Registration")
   }
-  function navigatetoGrounds(){
-    navigate("/add-ground")
+   function navigatetologin(id,name)
+  {
+    const data={Role:'Player',
+    Id:id,
+    Name:name
+  }
+  localStorage.setItem('userData', JSON.stringify(data));
+navigate("/",{state:data})
+
+  }
+  function navigatetoGrounds(id,name){
+    const data={Role:'GroundOwner',
+    Id:id,
+    Name:name
+  }
+
+
+    
+    navigate("/",{state:data})
   }
 
  
@@ -32,7 +43,6 @@ navigate("/")
   async function sendData() {
     const name = email; // Example variable
     const password = passwords;
-    if(gender==='player'){
     const url=`https://localhost:7191/api/Values/${name},${password}`
     const response = await fetch(url, {
       method: 'GET',
@@ -42,10 +52,13 @@ navigate("/")
      
     });
     if(response.ok){
-      const data =await response.text();
-      if(data==="ok")
+      console.log('hh')
+      const data = await response.json();
+      console.log(data);
+      if(data)
       {
-        navigate("/")
+
+        navigatetologin(data.id,data.name);
         alert("Aunthenticated")
       }
      else{
@@ -67,10 +80,12 @@ navigate("/")
      
     });
     if(response.ok){
-      const data =await response.text();
-      if(data==="ok")
+      const data = await response.json();
+      console.log(data);
+      if(data)
       {
-        navigatetoGrounds()
+      
+        navigatetoGrounds(data.id,data.name)
         alert("Aunthenticated")
       }
      else{
@@ -81,7 +96,6 @@ navigate("/")
     }
     else {
       console.error('Request failed with status:', response.status);}
-    }
     
   }
   
@@ -119,33 +133,12 @@ setemail(e.target.value)
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Remember me" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicRadio">
-      <Form.Label>Role</Form.Label>
-      <div>
-        <Form.Check
-          type="radio"
-          label="Player"
-          name="designation"
-          id="Player"
-          value="Player"
-          onChange={(e) => { setgender(e.target.value) }}
-        />
-        <Form.Check
-          type="radio"
-          label="GroundOwner"
-          name="designation"
-          id="GroundOwner"
-          value="GroundOwner"
-          onChange={(e) => { setgender(e.target.value) }}
-        />
-      </div>
-    </Form.Group>
       <Button variant="primary" type="submit" onClick={ sendData } style={{width:"34pc"}}>
         Signin
       </Button>
       <div className='text-center'>
       <p>Not a member ?
-      <a href='#!' onClick={navigatetologin}>Register</a>
+      <a href='#!' onClick={navigatetoRegistration}>Register</a>
       </p>
       
       </div>

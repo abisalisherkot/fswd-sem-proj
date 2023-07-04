@@ -1,12 +1,14 @@
 body{
-    background-color: rgba(240,241,243,255);
+    background-color: rgba(240,241,243,255); /*grey color*/
 }
 
 .container-fluid{
-    background-color:rgba(0,0,125,255);
+    background-color: black;
+    /* background-color:rgba(0,0,125,255); */
 }
 .container-fluid h1 span{
-    color:rgba(110,255,110,255);
+    color: #F7D060;
+    /*color:rgba(110,255,110,255);*/
     font-weight: bold;
 }
 .container-fluid h1 {
@@ -17,23 +19,18 @@ body{
     text-align: start;
 }
 .search{
-   display: inline-block;
-
     border-radius: 30px;
-    width: 20%;
-    height: 3%;
-    background-color: rgba(110,255,110,255);
+    width: 30%;
+    background-color: #F7D060;;
+    /* background-color: rgba(110,255,110,255); */
     text-align: left;
 }
-.text{
-    
+h6{
+    color: white;
+    font-weight: bold;
 }
 .search svg{
-    margin-right: 10px;
-    height: 20px;
-    position: relative;
-    top: 5px;
-    right: 93px;
+   color: white;
 }
 .navbar-nav > li > a {
     padding: 0.5rem 1rem;

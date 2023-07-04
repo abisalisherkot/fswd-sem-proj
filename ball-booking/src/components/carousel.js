@@ -1,56 +1,55 @@
-import React, { useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
-import ground from '../images/ground.jpg';
+import React, { useState, useEffect } from 'react';
+import { Spinner, Carousel } from 'react-bootstrap';
+import axios from 'axios';
 
-export default function ControlledCarousel() {
-  const [index, setIndex] = useState(0);
+const ControlledCarousel = () => {
+  const [allGrounds, setAllGrounds] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
+  useEffect(() => {
+    try {
+      console.log('Inside try of Ground.js front-end');
+      axios.get('http://localhost:5000/get-grounds').then((res) => {
+        console.log('Res:', res.data);
+        setAllGrounds(res.data.data);
+        setIsLoading(false); // Set loading state to false when data is received
+      });
+    } catch (err) {
+      console.log('Inside catch of Ground.js front-end');
+      console.log(`Error: ${err}`);
+      setIsLoading(false); // Set loading state to false when data is received
+    }
+  }, []);
+
+  // Names of the grounds to filter
+  const desiredNames = ['SportX', 'Total', 'Palm'];
+
+  // Filter the allGrounds array based on desired names and take the first three matching elements
+  const displayedGrounds = allGrounds.filter((ground) => desiredNames.includes(ground.name)).slice(0, 3);
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={ground}
-          alt="First slide"
-        />
-        <Carousel.Caption>
-        <h3>Sukchyan Ground</h3>
-        <button type='button' className='btn btn-success'>Book Now</button>
-        <button type='button' className='btn btn-primary ' style={{ marginLeft: '10px' }} >See Details</button>
-      </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={ground}
-          alt="Second slide"
-        />
-
-        <Carousel.Caption>
-        <h3>Sukchyan Ground</h3>
-        <button type='button' className='btn btn-success'>Book Now</button>
-        <button type='button' className='btn btn-primary ' style={{ marginLeft: '10px' }} >See Details</button>
-      </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src={ground}
-          alt="Third slide"
-        />
-
-        <Carousel.Caption>
-        <h3>Sukchyan Ground</h3>
-        <button type='button' className='btn btn-success'>Book Now</button>
-        <button type='button' className='btn btn-primary ' style={{ marginLeft: '10px' }} >See Details</button>
-      </Carousel.Caption>
-      
-      </Carousel.Item>
-    </Carousel>
+    <>
+      {isLoading ? (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+        </div>
+      ) : (
+        
+        <Carousel>
+          {displayedGrounds.map((ground) => (
+            <Carousel.Item key={ground._id}>
+              <Carousel.Caption>
+                    <h3>{ground.name}, {ground.location}</h3>
+                    <button type='button' className='btn btn-info'>See Details</button>
+                  </Carousel.Caption>
+                <img src={ground.image} className="" style={{ width: '100%', height: '25%' }} alt="Ground pic" />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+       
+      )}
+    </>
   );
-}
+};
 
+export default ControlledCarousel;
